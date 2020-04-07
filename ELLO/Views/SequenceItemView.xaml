@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Thorlabs.Elliptec.ELLO.Views.SequenceItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:support="clr-namespace:Thorlabs.Elliptec.ELLO.Support"
+             xmlns:local="clr-namespace:Thorlabs.Elliptec.ELLO.ViewModel"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Thorlabs.Elliptec.ELLO;component/Themes/ThorStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <support:BoolToVisibilityConverter x:Key="myBoolToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="_indexColumn"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="_commandColumn"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="_addressColumn"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="_parsColumn"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="_timeColumn"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Content="{Binding Index}" Margin="5,2" FontWeight="DemiBold"/>
+        <ComboBox Grid.Column="1" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Addresses.Items}" Text="{Binding Addresses.SelectedAddressText, Mode=OneWay}" Margin="5,2" MinWidth="50" SelectionChanged="ComboBox_SelectionChanged" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:CheckableAddress}">
+                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Grid Grid.Column="2">
+            <ItemsControl  ItemsSource="{Binding Commands.Values}" Height="0" Margin="5,0,30,0"/>
+            <ComboBox ItemsSource="{Binding Commands}" SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Command}" Margin="5,2" />
+        </Grid>
+        <TextBox Grid.Column="3" PreviewTextInput="ValueTextBox_PreviewTextInput" Visibility="{Binding ShowParam1, Converter={StaticResource myBoolToVisibilityConverter}, FallbackValue=true}" Margin="5,2" MinWidth="40">
+            <TextBox.Text>
+                <Binding Path="Parameter1" StringFormat="{}{0:0.####}">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Grid Grid.Column="3" Visibility="{Binding ShowParam2, Converter={StaticResource myBoolToVisibilityConverter}, FallbackValue=true}">
+            <ItemsControl  ItemsSource="{Binding Directions.Values}" Height="0" Margin="5,0,30,0"/>
+            <ComboBox ItemsSource="{Binding Directions}" SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding Parameter2}" Margin="5,2"/>
+        </Grid>
+        <TextBox Grid.Column="4" Text="{Binding WaitTime, StringFormat='{}{0:0.0##}'}" PreviewTextInput="WaitTextBox_PreviewTextInput" Margin="5,2" MinWidth="40"/>
+    </Grid>
+</UserControl>

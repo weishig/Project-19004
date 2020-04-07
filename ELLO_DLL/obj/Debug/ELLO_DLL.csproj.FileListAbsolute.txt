@@ -1,0 +1,5 @@
+C:\Source Code\ELLO_DLL\bin\Debug\Thorlabs.Elliptec.ELLO_DLL.dll
+C:\Source Code\ELLO_DLL\bin\Debug\Thorlabs.Elliptec.ELLO_DLL.pdb
+C:\Source Code\ELLO_DLL\obj\Debug\Thorlabs.Elliptec.ELLO_DLL.dll
+C:\Source Code\ELLO_DLL\obj\Debug\Thorlabs.Elliptec.ELLO_DLL.pdb
+C:\Source Code\ELLO_DLL\obj\Debug\ELLO_DLL.csprojAssemblyReference.cache

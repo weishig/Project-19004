@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Thorlabs.Elliptec.ELLO.Views.RunningSequenceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:support="clr-namespace:Thorlabs.Elliptec.ELLO.Support"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Thorlabs.Elliptec.ELLO;component/Themes/ThorStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <support:BoolToVisibilityConverter x:Key="myBoolToVisibilityConverter" />
+            <support:BoolToVisibilityConverter x:Key="myBoolToVisibilityConverterInverted" InvertVisibility="True" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Run Step :" Grid.Row="0" Grid.Column="0" Margin="5,2" HorizontalAlignment="Right" FontWeight="DemiBold"/>
+            <Label Content="Cycle :" Grid.Row="1" Grid.Column="0" Margin="5,2" HorizontalAlignment="Right" FontWeight="DemiBold"/>
+            <Label Content="Command :" Grid.Row="0" Grid.Column="2" Margin="5,2" HorizontalAlignment="Right" FontWeight="DemiBold" />
+            <Label Content="State :" Grid.Row="1" Grid.Column="2" Margin="5,2" HorizontalAlignment="Right" FontWeight="DemiBold" />
+            <Label Content="{Binding RunningIndex}" Grid.Row="0" Grid.Column="1" Margin="5,2" HorizontalAlignment="Left" FontWeight="DemiBold" />
+            <Label Content="{Binding CycleCount}" Grid.Row="1" Grid.Column="1" Margin="5,2" HorizontalAlignment="Left" FontWeight="DemiBold" />
+            <Label Content="{Binding RunningCmd}" Grid.Row="0" Grid.Column="3" Margin="5,2" HorizontalAlignment="Left" FontWeight="DemiBold" />
+            <Label Content="{Binding RunningTime}" Grid.Row="1" Grid.Column="3" Margin="5,2" HorizontalAlignment="Left" FontWeight="DemiBold" />
+        </Grid>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Stop" Margin="5" Width="100" Height="40" Command="{Binding ClickStopCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+            <GroupBox Header="Repeat Options" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid Margin="5, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="repeatRun" Content="Repeat Run" IsChecked="{Binding RepeatRun, FallbackValue=True}" Margin="5" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Grid Grid.Column="1" Visibility="{Binding ElementName=repeatRun, Path=IsChecked, Converter={StaticResource myBoolToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox x:Name="continuousRun" Content="Continuous" IsChecked="{Binding RepeatContinuously, FallbackValue=False}" Margin="5" Grid.Column="0" VerticalAlignment="Center" />
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5" VerticalAlignment="Center" Visibility="{Binding ElementName=continuousRun, Path=IsChecked, Converter={StaticResource myBoolToVisibilityConverterInverted}}">
+                            <Label Content="Repeat Count" Margin="5,0"/>
+                            <TextBox Text="{Binding RepeatCount}" Margin="5,0" Width="40"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</UserControl>

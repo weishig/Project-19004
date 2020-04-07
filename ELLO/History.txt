@@ -1,0 +1,59 @@
+﻿ELLO
+==========
+
+Version 1.5.0.0 - 29th November 2018
+-----------------------------------
+
+Added support for following stages:
+	Optics Rotator Ell 14,
+	Linear Stage Ell 17,
+	Rotary Stage Ell 18,
+    LinearStage Ell 20,
+
+
+Version 1.4.3.0 - 6th December 2017
+-----------------------------------
+Fixed missing source file from installation causing example project to fail to build
+Minor API documentation updates
+Fixed issue in source code causing example not to build in pre VS2017.
+
+Version 1.4.2.0 - 16th October 2017
+-----------------------------------
+Updated manual
+
+Version 1.4.1.0 - 15th September 2017
+-----------------------------------
+
+Fixed crash when adding items to sequence
+Minor cosmetic changes to UI
+Added option to Fix Frequencies 
+
+Version 1.4.0.0 - 10th July 2017
+-----------------------------------
+Added support for ELL3 (Polarizer), ELL4 (Rotator) , ELL9 (Multi Position Slider) and ELL10 (60mm Linear Stage)
+
+Version 1.2.0.0 - 9th December 2016
+-----------------------------------
+
+Fixed negative relative step issue. Any absolute value >= 0.001 is now allowed.
+Fixed zero HomeOffset issue.  Any value >= 0.0 is allowed.
+Added automatic update to get JogStepSize and GetHomeOffset at startup.
+
+
+Version 1.1.2.0 - 11th August 2016
+---------------------------------
+Added option to set search range when looking for stages
+Fixed issues relating to numeric entry and illegal values
+
+Version 1.1.1.0 - 10th August 2016
+---------------------------------
+Fixed issue with "," not being accepted as decimal separator for cultures that require it
+
+Version 1.1.0.0 - 5th August 2016
+---------------------------------
+Updated to correct issues with Rotary and Linear stages
+
+Version 1.0.0.0 - 20th July 2016
+---------------------------------
+Initial Release
+

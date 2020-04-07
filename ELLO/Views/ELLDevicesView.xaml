@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="Thorlabs.Elliptec.ELLO.Views.ELLDevicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:support="clr-namespace:Thorlabs.Elliptec.ELLO.Support"
+             xmlns:viewModel="clr-namespace:Thorlabs.Elliptec.ELLO.ViewModel"
+             xmlns:views="clr-namespace:Thorlabs.Elliptec.ELLO.Views"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Thorlabs.Elliptec.ELLO;component/Themes/ThorStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <support:BoolToVisibilityConverter x:Key="myBoolToVisibilityConverter" />
+            <support:BoolToVisibilityConverter x:Key="myBoolToVisibilityConverterInverted" InvertVisibility="True" />
+            <support:InverseBooleanConverter x:Key="myInverseBooleanConverter" />
+            <support:BooleanAndConverter x:Key="myBooleanAndConverter" />
+            <support:BooleanOrConverter x:Key="myBooleanOrConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="1" BorderBrush="CadetBlue" CornerRadius="5" Background="White" BorderThickness="2" MinWidth="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition  />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Output Window" FontWeight="Bold" FontSize="18"/>
+                <Border Grid.Row="1" BorderBrush="Blue" Background="White" BorderThickness="1" MinWidth="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5">
+                    <ListView ItemsSource="{Binding CommsLog}" SelectedItem="{Binding CommsLogSelected}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Transparent" Background="Transparent" Margin="5" VirtualizingStackPanel.IsVirtualizing="False">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" >
+                                <Setter Property="support:ListViewItemBehavior.IsBroughtIntoViewWhenSelected" Value="true"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate DataType="viewModel:OutputItem">
+                                <Grid>
+                                    <TextBlock Text="{Binding Text}" Foreground="{Binding DisplayColour}" FontWeight="DemiBold" Margin="{Binding Margin}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Show Tx" IsChecked="{Binding ShowTxLoggedCmds}" Margin="5" Grid.Column="0" HorizontalAlignment="Left"/>
+                    <CheckBox Content="Show Rx" IsChecked="{Binding ShowRxLoggedCmds}" Margin="5" Grid.Column="1" HorizontalAlignment="Left"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="Blue" BorderThickness="2" CornerRadius="5" Margin="5" IsEnabled="{Binding BackgroundThreadManager.IsProcessing, Converter={StaticResource myInverseBooleanConverter}}" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" IsEnabled="{Binding IsConnected, Converter={StaticResource myInverseBooleanConverter}}">
+                            <Label Content="Port" FontWeight="Bold" Margin="5,5,5,0" VerticalAlignment="Center"/>
+                            <ComboBox Margin="5,0,5,5" MinWidth="80" VerticalAlignment="Center" ItemsSource="{Binding AvailablePorts}" SelectedValue="{Binding SelectedPort}"/>
+                        </StackPanel>
+                        <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch">
+                            <Button Content="Connect" Margin="5" Width="80"  Command="{Binding ClickConnectCommand}" VerticalAlignment="Stretch"  Visibility="{Binding IsConnected, Converter={StaticResource myBoolToVisibilityConverterInverted}}"/>
+                            <Button Content="Disconnect" Margin="5" Width="80" Command="{Binding ClickConnectCommand}" VerticalAlignment="Stretch" Visibility="{Binding IsConnected, Converter={StaticResource myBoolToVisibilityConverter}}" />
+                        </Grid>
+                        <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Stretch">
+                            <Label Content="Search Range" FontWeight="Bold" Margin="5,5,5,0" VerticalAlignment="Center"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Margin="5,0,5,5" Grid.Column="0" MinWidth="40" VerticalAlignment="Center" ItemsSource="{Binding SearchRangeValues}" SelectedValue="{Binding MinSearchLimit}" />
+                                <ComboBox Margin="5,0,5,5" Grid.Column="1" MinWidth="40" VerticalAlignment="Center" ItemsSource="{Binding SearchRangeValues}" SelectedValue="{Binding MaxSearchLimit}" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <Expander Grid.Column="2" Header="Change Address" HorizontalAlignment="Left" VerticalAlignment="Top" ExpandDirection="Down" Margin="5" >
+                        <Border BorderBrush="Black" BorderThickness="0.75" IsEnabled="{Binding IsConnected}">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Old Address" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="5,0,5,2"/>
+                                    <Label Content="New Address" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="5,2,5,0" />
+                                    <ComboBox ItemsSource="{Binding UsedAddress}" Grid.Column="1" Grid.Row="0" SelectedValue="{Binding OldAddress}" Margin="5,0,5,2"/>
+                                    <ComboBox ItemsSource="{Binding FreeAddress}" Grid.Column="1" Grid.Row="1" SelectedValue="{Binding NewAddress}" Margin="5,2,5,0" />
+                                </Grid>
+                                <Button Content="Set" Command="{Binding ClickSetAddressCommand}" Width=" 40" Margin="5" IsEnabled="{Binding CanReaddress}"/>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+                    <Expander Grid.Column="3" Header="Send Free Text" HorizontalAlignment="Left" VerticalAlignment="Top" ExpandDirection="Down" Margin="5" >
+                        <Border BorderBrush="Black" BorderThickness="0.75" IsEnabled="{Binding IsConnected}">
+                            <Grid KeyDown="Grid_KeyDown">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ItemsSource="{Binding FreeCommandStore}" Text="{Binding FreeCommandText}" IsEditable="True" Margin="5"/>
+                                <Button Name="_sendBtn" Grid.Row="1" Grid.Column="0" Content="Send" Command="{Binding ClickSendFreeCommandCommand}" Width=" 40" Margin="5"/>
+                                <Button Name="_addBtn" Grid.Row="1" Grid.Column="1" Content="Add" Command="{Binding ClickAddFreeCommandCommand}" Width=" 40" Margin="5"/>
+                            </Grid>
+                        </Border>
+                    </Expander>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" BorderBrush="PaleGreen" CornerRadius="5" Background="White" BorderThickness="2" MinWidth="200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Visibility="{Binding ShowSequencer, Converter={StaticResource myBoolToVisibilityConverter}}">
+                    <Grid IsEnabled="{Binding IsConnected}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding BackgroundThreadManager.IsProcessing, Converter={StaticResource myInverseBooleanConverter}}" >
+                            <views:SequenceView DataContext="{Binding SequenceViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Visibility="{Binding SequenceViewModel.RunningSequence, Converter={StaticResource myBoolToVisibilityConverter}}">
+                            <views:RunningSequenceView DataContext="{Binding SequenceViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <TabControl ItemsSource="{Binding ObservableDeviceViewModels}" Grid.Column="0" SelectedValue="{Binding SelectedViewModel, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <TabControl.ItemTemplate>
+                        <!-- this is the header template-->
+                        <DataTemplate DataType="viewModel:ELLDeviceBaseViewModel">
+                            <TextBlock Text="{Binding FullDeviceName}" />
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <Grid >
+                                <ContentPresenter Content="{Binding}">
+                                    <ContentPresenter.ContentTemplate>
+                                        <!-- this is the body of the TabItem template-->
+                                        <DataTemplate DataType="viewModel:ELLDeviceBaseViewModel">
+                                            <Grid>
+                                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                    <views:ELLDeviceView />
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                            </Grid>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

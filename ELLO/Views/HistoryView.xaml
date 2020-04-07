@@ -1,0 +1,35 @@
+﻿<Window x:Class="Thorlabs.Elliptec.ELLO.Views.HistoryView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="History" MinHeight="50" MinWidth="100" Width="400" Height="200" ShowInTaskbar="False">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Thorlabs.Elliptec.ELLO;component/Themes/ThorStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="OkButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="MinWidth" Value="75" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="DockPanel.Dock" Value="Right" />
+                <Setter Property="IsDefault" Value="True" />
+                <Setter Property="IsCancel" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel Background="{StaticResource ThorBackgroundDouble}"  >
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" FlowDirection="RightToLeft" Height="Auto" VerticalAlignment="Bottom">
+            <Button x:Name="okButton" x:Uid="okButton" Style="{StaticResource OkButtonStyle}" 
+                        Content="Close" Margin="5"/>
+        </StackPanel>
+        <Grid>
+            <Image Opacity="0.25" Source="/Images/QuadLarge.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBox x:Name="description" Text="{Binding Path=HistoryText}" IsReadOnly="True" TextWrapping="WrapWithOverflow" MinLines="6" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="Transparent" BorderThickness="0" FontWeight="DemiBold"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>
