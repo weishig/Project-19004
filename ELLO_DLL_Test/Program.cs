@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Thorlabs.Elliptec.ELLO_DLL;
-//pull
+//pulladf
 
 
 namespace ELLO_DLL_Test
