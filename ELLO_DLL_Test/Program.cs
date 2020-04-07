@@ -11,7 +11,7 @@ using Thorlabs.Elliptec.ELLO_DLL;
 
 namespace ELLO_DLL_Test
 {
-	/// <summary>	Main test program. </summary>
+	/// <summary>	Main test program.dadfadsfasd </summary>
 	public class Program
 	{
 		/// <summary>	Main entry-point for this application. </summary>
