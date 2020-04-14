@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Thorlabs.Elliptec.ELLO_DLL;
 
-
+/// ///////////dafasda
+/// </summary>
 
 namespace ELLO_DLL_Test
 {
@@ -18,9 +19,12 @@ namespace ELLO_DLL_Test
 		/// <param name="args">	Array of command-line argument strings. [port] [minAddress] [maxAddress] </param>
 		static void Main(string[] args)
 		{
+
+			
 			//string port = (args.Length > 0) ? args[0] : "COM7";
 
 			// get the range of addresses used max range is '0' to 'F'
+
 			//char _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
 			//char _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '1';
 
@@ -28,7 +32,8 @@ namespace ELLO_DLL_Test
 			Application.SetCompatibleTextRenderingDefault(false);
 	
 			Application.Run(new Form(args));
-			
+			//Console.
+
 
 
 			// get the communication port

@@ -1,0 +1,20 @@
+﻿Thorlabs.Elliptec.ELLO
+
+
+winexe
+C#
+.cs
+C:\Users\Guo\Desktop\Project 19004\ELLO\obj\x64\Debug\
+Thorlabs.Elliptec.ELLO
+none
+false
+DEBUG;TRACE
+C:\Users\Guo\Desktop\Project 19004\ELLO\App.xaml
+151226469988
+
+521327877965
+15-1140290578
+Themes\ThorStyles.xaml;Views\AboutBoxView.xaml;Views\ELLActuatorView.xaml;Views\ELLDevicesView.xaml;Views\ELLMotorView.xaml;Views\ELLPaddlePolariserView.xaml;Views\ELLPaddleView.xaml;Views\ELLStageView.xaml;Views\ELLShutterView.xaml;Views\ELLDeviceView.xaml;Views\HistoryView.xaml;Views\MainWindow.xaml;Views\RunningSequenceView.xaml;Views\SequenceView.xaml;Views\SequenceItemView.xaml;
+
+True
+

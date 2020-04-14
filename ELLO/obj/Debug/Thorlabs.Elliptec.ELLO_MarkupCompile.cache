@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Source Code\ELLO\obj\Debug\
+C:\Users\Guo\Desktop\Project 19004\ELLO\obj\Debug\
 Thorlabs.Elliptec.ELLO
 none
 false
 DEBUG;TRACE
-C:\Source Code\ELLO\App.xaml
+C:\Users\Guo\Desktop\Project 19004\ELLO\App.xaml
 151226469988
 
 521327877965
-15-330232446
+15-1717398642
 Themes\ThorStyles.xaml;Views\AboutBoxView.xaml;Views\ELLActuatorView.xaml;Views\ELLDevicesView.xaml;Views\ELLMotorView.xaml;Views\ELLPaddlePolariserView.xaml;Views\ELLPaddleView.xaml;Views\ELLStageView.xaml;Views\ELLShutterView.xaml;Views\ELLDeviceView.xaml;Views\HistoryView.xaml;Views\MainWindow.xaml;Views\RunningSequenceView.xaml;Views\SequenceView.xaml;Views\SequenceItemView.xaml;
 
-False
+True
 

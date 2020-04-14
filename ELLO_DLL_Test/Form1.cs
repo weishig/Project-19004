@@ -25,36 +25,42 @@ namespace ELLO_DLL_Test
         public ELLDevice addressedDevice3;
         public ELLDevice addressedDevice4;
 
+
+       // public double xPos;
+        //public double yPos;
+        //public double distance;
+        
+
         public string OutputWindowString;
 
         public Form(string[] args)
         {
             InitializeComponent();
-            
-            port = (args.Length > 0) ? args[0] : "COM7";
-            _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
-            _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '1';
-            ellDevices = new ELLDevices();
+            /*
+             port = (args.Length > 0) ? args[0] : "COM3";
+             _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
+             _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '4';
+             ellDevices = new ELLDevices();
 
-            
 
-            if (ELLDevicePort.Connect(port))
-            {
-                // PrintOutBox.Text = "Ide";
-                devices = ellDevices.ScanAddresses(_minSearchLimit, _maxSearchLimit);
-                foreach (string device in devices)
-                {
-                
-                // configure each device found
-                    if (ellDevices.Configure(device))
-                    {
-                      addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
-                        addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
-                        addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
-                        addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
-                    }
-                }
-            }
+
+             if (ELLDevicePort.Connect(port))
+             {
+
+                 devices = ellDevices.ScanAddresses(_minSearchLimit, _maxSearchLimit);
+                 foreach (string device in devices)
+                 {
+
+                 // configure each device found
+                     if (ellDevices.Configure(device))
+                     {
+                       addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
+                         addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
+                         addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
+                         addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
+                     }
+                 }
+             }*/
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -353,6 +359,143 @@ namespace ELLO_DLL_Test
         }
 
         /////////////control all///////////////////////////////////////////////////////////////
+        private void MoveAll_Click(object sender, EventArgs e)
+        {
+            string xPosStr = XPositionTextBox.Text;
+            string yPosStr = YPositionTextBox.Text;
+            string distanceStr = DistanceTexBox.Text;
+            decimal phi = 2.215m;
+            decimal ex = 1m;
+            decimal ey = 1m;
+            decimal thetax = 0m;
+            decimal thetay = 0m;
+
+            if (xPosStr == "" || yPosStr == "")
+            {
+                return;
+            }
+
+
+            decimal xPos;
+            decimal yPos;
+            decimal distance;
+            var a = decimal.TryParse(xPosStr, out xPos);
+            var b = decimal.TryParse(yPosStr, out yPos);
+            var c = decimal.TryParse(distanceStr, out distance);
+            decimal x1;
+            decimal x2;
+            decimal y1;
+            decimal y2;
+            while (ex > 0.1m)
+            {
+                //((double)0 + 90)
+                //double l;
+                //l= Math.Cos((((double)0 + 90) * (Math.PI)) / 180);
+                decimal x1_cos = (decimal)Math.Cos(((90 + (double)thetax) * (Math.PI)) / 180);
+                x1 = x1_cos * phi;
+                x1 = Math.Round(x1, 5);
+                decimal x2_cos = (decimal)Math.Cos(((270 - (double)thetax) * (Math.PI)) / 180);
+                x2 = x2_cos * phi;
+                x2 = Math.Round(x2, 5);
+                if (xPos > 0m)
+                {
+                    thetax = thetax - 0.01m;
+
+                }
+                else if (xPos < 0m)
+                {
+                    thetax = thetax + 0.01m;
+
+                }
+                else if (xPos == 0m)
+                {
+                    thetax = thetax;
+                    break;
+
+                }
+                ex = Math.Abs(xPos - 60m * (x1 + x2));
+
+            }
+
+
+            while (ey > 0.1m)
+            {
+                //()
+                decimal y1_cos = (decimal)Math.Sin(((0 + (double)thetay) * (Math.PI)) / 180);
+                y1 = y1_cos * phi;
+                y1 = Math.Round(y1, 5);
+                decimal y2_cos = (decimal)Math.Sin(((180 - (double)thetay) * (Math.PI)) / 180);
+                y2 = y2_cos * phi;
+                y2 = Math.Round(y2, 5);
+
+                if (yPos > 0m)
+                {
+                    thetay = thetay + 0.01m;
+
+                }
+                else if (yPos < 0m)
+                {
+                    thetay = thetay - 0.01m;
+
+                }
+                else if (yPos == 0m)
+                {
+                    thetay = thetay;
+                    break;
+                }
+                ey = Math.Abs(yPos - 60m * (y1 + y2));
+
+            }
+            decimal mount1Rotate;
+            decimal mount2Rotate;
+            decimal mount3Rotate;
+            decimal mount4Rotate;
+            if (thetax < 0)
+            {
+                mount1Rotate = -thetax;
+                mount2Rotate =thetax;
+                
+            }
+            else
+            {
+                mount1Rotate = thetax;
+                mount2Rotate = -thetax;
+                
+            }
+
+            if (thetay < 0)
+            {
+                mount3Rotate = -thetay;
+                mount4Rotate = thetay;
+            }
+            else
+            {
+                mount3Rotate = thetay;
+                mount4Rotate = -thetay;
+            }
+
+            OutputWindowString = OutputWindowString + "prism 1 should rotate " + mount1Rotate + "\n";
+            OutputWindowString = OutputWindowString + "prism 2 should rotate " + mount2Rotate + "\n";           
+            OutputWindowString = OutputWindowString + "prism 3 should rotate " + mount3Rotate + "\n";
+            OutputWindowString = OutputWindowString + "prism 4 should rotate " + mount4Rotate + "\n";
+
+            PrintOutBox.Text = OutputWindowString;
+            /*
+                        addressedDevice1.MoveAbsolute(mount1Rotate);
+                        addressedDevice2.MoveAbsolute(mount2Rotate);
+                        addressedDevice3.MoveAbsolute(mount3Rotate);
+                        addressedDevice4.MoveAbsolute(mount4Rotate);
+                        */
+            XPositionTextBox.Text = "";
+            YPositionTextBox.Text = "";
+            DistanceTexBox.Text = "";
+            mount1Rotate = 0;
+            mount2Rotate = 0;
+            mount3Rotate = 0;
+            mount4Rotate = 0;
+
+            return;
+        }
         private void HomeAllButton_Click(object sender, EventArgs e)
         {
             if (addressedDevice1 != null)
@@ -398,6 +541,7 @@ namespace ELLO_DLL_Test
 
 
         }
+
 
         private void label8_Click(object sender, EventArgs e)
         {

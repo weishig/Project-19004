@@ -10,3 +10,15 @@ C:\Source Code\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.exe
 C:\Source Code\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.csproj.GenerateResource.cache
 C:\Source Code\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.Form.resources
 C:\Source Code\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.Properties.Resources.resources
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\bin\Debug\ELLO_DLL_Test.exe.config
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\bin\Debug\ELLO_DLL_Test.exe
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\bin\Debug\ELLO_DLL_Test.pdb
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\bin\Debug\Thorlabs.Elliptec.ELLO_DLL.dll
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\bin\Debug\Thorlabs.Elliptec.ELLO_DLL.pdb
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.csprojAssemblyReference.cache
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.Form.resources
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.Properties.Resources.resources
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.csproj.GenerateResource.cache
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.csproj.CopyComplete
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.exe
+C:\Users\Guo\Desktop\Project 19004\ELLO_DLL_Test\obj\Debug\ELLO_DLL_Test.pdb
