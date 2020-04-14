@@ -36,6 +36,7 @@ namespace ELLO_DLL_Test
         public Form(string[] args)
         {
             InitializeComponent();
+<<<<<<< HEAD
             /*
              port = (args.Length > 0) ? args[0] : "COM3";
              _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
@@ -61,6 +62,33 @@ namespace ELLO_DLL_Test
                      }
                  }
              }*/
+=======
+            
+            port = (args.Length > 0) ? args[0] : "COM3";
+            _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
+            _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '3';
+            ellDevices = new ELLDevices();
+
+            
+
+            if (ELLDevicePort.Connect(port))
+            {
+                // PrintOutBox.Text = "Ide";
+                devices = ellDevices.ScanAddresses(_minSearchLimit, _maxSearchLimit);
+                foreach (string device in devices)
+                {
+                
+                // configure each device found
+                    if (ellDevices.Configure(device))
+                    {
+                      addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
+                        addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
+                        addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
+                        addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
+                    }
+                }
+            }
+>>>>>>> 61ab944a217e79e8aca952e61e1e0e6f4bbb6717
         }
 
         private void Form1_Load(object sender, EventArgs e)
