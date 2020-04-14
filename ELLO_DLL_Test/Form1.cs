@@ -36,7 +36,7 @@ namespace ELLO_DLL_Test
         public Form(string[] args)
         {
             InitializeComponent();
-<<<<<<< HEAD
+
             /*
              port = (args.Length > 0) ? args[0] : "COM3";
              _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
@@ -61,8 +61,8 @@ namespace ELLO_DLL_Test
                          addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
                      }
                  }
-             }*/
-=======
+             }
+
             
             port = (args.Length > 0) ? args[0] : "COM3";
             _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
@@ -88,7 +88,7 @@ namespace ELLO_DLL_Test
                     }
                 }
             }
->>>>>>> 61ab944a217e79e8aca952e61e1e0e6f4bbb6717
+            */
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -517,10 +517,22 @@ namespace ELLO_DLL_Test
             XPositionTextBox.Text = "";
             YPositionTextBox.Text = "";
             DistanceTexBox.Text = "";
-            mount1Rotate = 0;
-            mount2Rotate = 0;
-            mount3Rotate = 0;
-            mount4Rotate = 0;
+            /*
+            decimal val1 = addressedDevice1.Position;
+            decimal roundedVal1 = Math.Round(val1, 3);
+            RotationMount4CurrentPosition.Text = roundedVal1.ToString() + "deg";
+
+            decimal val2 = addressedDevice2.Position;
+            decimal roundedVal2 = Math.Round(val2, 3);
+            RotationMount4CurrentPosition.Text = roundedVal2.ToString() + "deg";
+            decimal val3 = addressedDevice3.Position;
+            decimal roundedVal3 = Math.Round(val3, 3);
+            RotationMount4CurrentPosition.Text = roundedVal3.ToString() + "deg";
+            decimal val4 = addressedDevice4.Position;
+            decimal roundedVal4 = Math.Round(val4, 3);
+            RotationMount4CurrentPosition.Text = roundedVal4.ToString() + "deg";
+          */
+
 
             return;
         }

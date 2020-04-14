@@ -6,14 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Thorlabs.Elliptec.ELLO_DLL;
-<<<<<<< HEAD
 
-/// ///////////dafasda
-/// </summary>
-=======
-//pulladf
-
->>>>>>> 61ab944a217e79e8aca952e61e1e0e6f4bbb6717
 
 namespace ELLO_DLL_Test
 {
