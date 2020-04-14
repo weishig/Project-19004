@@ -37,7 +37,7 @@ namespace ELLO_DLL_Test
         {
             InitializeComponent();
 
-            /*
+            
              port = (args.Length > 0) ? args[0] : "COM3";
              _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
              _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '4';
@@ -88,7 +88,7 @@ namespace ELLO_DLL_Test
                     }
                 }
             }
-            */
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -508,16 +508,16 @@ namespace ELLO_DLL_Test
             OutputWindowString = OutputWindowString + "prism 4 should rotate " + mount4Rotate + "\n";
 
             PrintOutBox.Text = OutputWindowString;
-            /*
+            
                         addressedDevice1.MoveAbsolute(mount1Rotate);
                         addressedDevice2.MoveAbsolute(mount2Rotate);
                         addressedDevice3.MoveAbsolute(mount3Rotate);
                         addressedDevice4.MoveAbsolute(mount4Rotate);
-                        */
+                        
             XPositionTextBox.Text = "";
             YPositionTextBox.Text = "";
             DistanceTexBox.Text = "";
-            /*
+            
             decimal val1 = addressedDevice1.Position;
             decimal roundedVal1 = Math.Round(val1, 3);
             RotationMount4CurrentPosition.Text = roundedVal1.ToString() + "deg";
@@ -531,7 +531,7 @@ namespace ELLO_DLL_Test
             decimal val4 = addressedDevice4.Position;
             decimal roundedVal4 = Math.Round(val4, 3);
             RotationMount4CurrentPosition.Text = roundedVal4.ToString() + "deg";
-          */
+          
 
 
             return;
