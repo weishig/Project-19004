@@ -74,7 +74,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.RotationMount4HomeButton = new System.Windows.Forms.Button();
             this.RotationMount4MoveAbsoluteButton = new System.Windows.Forms.Button();
             this.RotationMount4MoveRelativeButton = new System.Windows.Forms.Button();
             this.RotationMount4CurrentPosition = new System.Windows.Forms.Label();
@@ -85,6 +84,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.ClearOutputWindowButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -533,7 +533,7 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.RotationMount4HomeButton);
+            this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.RotationMount4MoveAbsoluteButton);
             this.panel6.Controls.Add(this.RotationMount4MoveRelativeButton);
             this.panel6.Controls.Add(this.RotationMount4CurrentPosition);
@@ -547,16 +547,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(504, 256);
             this.panel6.TabIndex = 21;
-            // 
-            // RotationMount4HomeButton
-            // 
-            this.RotationMount4HomeButton.Location = new System.Drawing.Point(211, 193);
-            this.RotationMount4HomeButton.Name = "RotationMount4HomeButton";
-            this.RotationMount4HomeButton.Size = new System.Drawing.Size(91, 39);
-            this.RotationMount4HomeButton.TabIndex = 18;
-            this.RotationMount4HomeButton.Text = "Home";
-            this.RotationMount4HomeButton.UseVisualStyleBackColor = true;
-            this.RotationMount4HomeButton.Click += new System.EventHandler(this.RotationMount4HomeButton_Click);
             // 
             // RotationMount4MoveAbsoluteButton
             // 
@@ -648,6 +638,16 @@
             this.ClearOutputWindowButton.UseVisualStyleBackColor = true;
             this.ClearOutputWindowButton.Click += new System.EventHandler(this.ClearOutputWindowButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(227, 193);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 39);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Home";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.RotationMount4HomeButton_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -733,7 +733,6 @@ private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button RotationMount4HomeButton;
         private System.Windows.Forms.Button RotationMount4MoveAbsoluteButton;
         private System.Windows.Forms.Button RotationMount4MoveRelativeButton;
         private System.Windows.Forms.Label RotationMount4CurrentPosition;
@@ -744,6 +743,7 @@ private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button ClearOutputWindowButton;
+        private System.Windows.Forms.Button button1;
     }
 }
  

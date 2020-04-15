@@ -11,7 +11,7 @@ using Thorlabs.Elliptec.ELLO_DLL;
 using ELLO_DLL_Test;
 namespace ELLO_DLL_Test
 {
-// code version 1    15.4.2020
+// code version 1    15.4.2020 update at 4pm
 
     public partial class Form : System.Windows.Forms.Form
     {
@@ -41,11 +41,11 @@ namespace ELLO_DLL_Test
             
              port = (args.Length > 0) ? args[0] : "COM3";
              _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
-             _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '4';
+             _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '3';
              ellDevices = new ELLDevices();
 
 
-
+            
              if (ELLDevicePort.Connect(port))
              {
 
@@ -56,39 +56,13 @@ namespace ELLO_DLL_Test
                  // configure each device found
                      if (ellDevices.Configure(device))
                      {
-                       addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
+                         addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
                          addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
                          addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
                          addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
                      }
                  }
              }
-
-            
-            port = (args.Length > 0) ? args[0] : "COM3";
-            _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
-            _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '3';
-            ellDevices = new ELLDevices();
-
-            
-
-            if (ELLDevicePort.Connect(port))
-            {
-                // PrintOutBox.Text = "Ide";
-                devices = ellDevices.ScanAddresses(_minSearchLimit, _maxSearchLimit);
-                foreach (string device in devices)
-                {
-                
-                // configure each device found
-                    if (ellDevices.Configure(device))
-                    {
-                      addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
-                        addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
-                        addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
-                        addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
-                    }
-                }
-            }
             
         }
 
@@ -145,7 +119,7 @@ namespace ELLO_DLL_Test
         {
             if (addressedDevice1 != null)
             {
-                addressedDevice1.Home();
+               addressedDevice1.Home();
                 OutputWindowString = OutputWindowString + "Device 1 is homed\n";
                 PrintOutBox.Text = OutputWindowString;
 
@@ -213,7 +187,7 @@ namespace ELLO_DLL_Test
         }
         private void RotationMount2MoveAbsoluteButton_Click(object sender, EventArgs e)
         {
-
+           
             string input = RotationMount2MoveAbsoluteTextBox.Text;
             if (input == "")
             {
@@ -239,7 +213,7 @@ namespace ELLO_DLL_Test
 
         private void RotationMount2MoveRelativeButton_Click(object sender, EventArgs e)
         {
-
+           
             string input = RotationMount2MoveRelativeTextBox.Text;
             if (input == "")
             {
@@ -248,7 +222,7 @@ namespace ELLO_DLL_Test
             decimal i;
 
             var s = decimal.TryParse(input, out i);
-            addressedDevice1.MoveRelative(i);
+            addressedDevice2.MoveRelative(i);
             decimal val = addressedDevice2.Position;
             decimal roundedVal = Math.Round(val, 3);
 
@@ -521,14 +495,14 @@ namespace ELLO_DLL_Test
             
             decimal val1 = addressedDevice1.Position;
             decimal roundedVal1 = Math.Round(val1, 3);
-            RotationMount4CurrentPosition.Text = roundedVal1.ToString() + "deg";
+            RotationMount1CurrentPosition.Text = roundedVal1.ToString() + "deg";
 
             decimal val2 = addressedDevice2.Position;
             decimal roundedVal2 = Math.Round(val2, 3);
-            RotationMount4CurrentPosition.Text = roundedVal2.ToString() + "deg";
+            RotationMount2CurrentPosition.Text = roundedVal2.ToString() + "deg";
             decimal val3 = addressedDevice3.Position;
             decimal roundedVal3 = Math.Round(val3, 3);
-            RotationMount4CurrentPosition.Text = roundedVal3.ToString() + "deg";
+            RotationMount3CurrentPosition.Text = roundedVal3.ToString() + "deg";
             decimal val4 = addressedDevice4.Position;
             decimal roundedVal4 = Math.Round(val4, 3);
             RotationMount4CurrentPosition.Text = roundedVal4.ToString() + "deg";
