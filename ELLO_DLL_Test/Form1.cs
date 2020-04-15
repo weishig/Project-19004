@@ -53,14 +53,79 @@ namespace ELLO_DLL_Test
                  foreach (string device in devices)
                  {
 
-                 // configure each device found
-                     if (ellDevices.Configure(device))
-                     {
-                         addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
-                         addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
-                         addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
-                         addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
-                     }
+                    // configure each device found
+                    if (ellDevices.Configure(device))
+                    {
+                        addressedDevice1 = ellDevices.AddressedDevice(device[0]) as ELLDevice;
+                        addressedDevice2 = ellDevices.AddressedDevice(device[1]) as ELLDevice;
+                        addressedDevice3 = ellDevices.AddressedDevice(device[2]) as ELLDevice;
+                        addressedDevice4 = ellDevices.AddressedDevice(device[3]) as ELLDevice;
+                        if (addressedDevice1 != null)
+                        {
+                            addressedDevice1.Home();
+                            decimal val = addressedDevice1.Position;
+                            decimal roundedVal = Math.Round(val, 3);
+                            RotationMount1CurrentPosition.Text = roundedVal.ToString() + "deg";
+                                                 
+                            OutputWindowString = OutputWindowString + "Device 1 is connected sucessfully\n";
+                            OutputWindowString = OutputWindowString + "Device 1 is homed\n\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+                        else {
+                            OutputWindowString = OutputWindowString + "Device 1 is not connected\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+
+                        if (addressedDevice2 != null)
+                        {
+                            addressedDevice2.Home();
+                            decimal val = addressedDevice2.Position;
+                            decimal roundedVal = Math.Round(val, 3);
+                            RotationMount2CurrentPosition.Text = roundedVal.ToString() + "deg";
+                            OutputWindowString = OutputWindowString + "Device 2 is connected sucessfully\n";
+                            OutputWindowString = OutputWindowString + "Device 2 is homed\n\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+                        else
+                        {
+                            OutputWindowString = OutputWindowString + "Device 2 is not connected\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+
+                        if (addressedDevice3 != null)
+                        {
+                            addressedDevice3.Home();
+                            decimal val = addressedDevice3.Position;
+                            decimal roundedVal = Math.Round(val, 3);
+                            RotationMount3CurrentPosition.Text = roundedVal.ToString() + "deg";
+                            OutputWindowString = OutputWindowString + "Device 3 is connected sucessfully\n";
+                            OutputWindowString = OutputWindowString + "Device 3 is homed\n\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+                        else
+                        {
+                            OutputWindowString = OutputWindowString + "Device 3 is not connected\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+
+                        if (addressedDevice4 != null)
+                        {
+                            addressedDevice4.Home();
+                            decimal val = addressedDevice4.Position;
+                            decimal roundedVal = Math.Round(val, 3);
+                            RotationMount4CurrentPosition.Text = roundedVal.ToString() + "deg";
+                            OutputWindowString = OutputWindowString + "Device 4 is connected sucessfully\n";
+                            OutputWindowString = OutputWindowString + "Device 4 is homed\n\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+                        else
+                        {
+                            OutputWindowString = OutputWindowString + "Device 4 is not connected\n";
+                            PrintOutBox.Text = OutputWindowString;
+                        }
+
+
+                    }
                  }
              }
             
@@ -68,48 +133,6 @@ namespace ELLO_DLL_Test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            OutputWindowString = OutputWindowString + "Devices are found\n";
-            PrintOutBox.Text = OutputWindowString;
-            if (addressedDevice1 != null)
-            {
-                addressedDevice1.Home();
-                decimal val = addressedDevice1.Position;
-                decimal roundedVal = Math.Round(val, 3);
-                RotationMount1CurrentPosition.Text = roundedVal.ToString() + "deg";
-
-                OutputWindowString = OutputWindowString + "Device 1 is homed\n";
-                PrintOutBox.Text = OutputWindowString;
-
-            }
-            if (addressedDevice2 != null)
-            {
-                addressedDevice2.Home();
-                decimal val = addressedDevice2.Position;
-                decimal roundedVal = Math.Round(val, 3);
-                RotationMount2CurrentPosition.Text = roundedVal.ToString() + "deg";
-                OutputWindowString = OutputWindowString + "Device 2 is homed\n";
-                PrintOutBox.Text = OutputWindowString;
-
-
-            }
-            if (addressedDevice3 != null)
-            {
-                addressedDevice3.Home();
-                decimal val = addressedDevice3.Position;
-                decimal roundedVal = Math.Round(val, 3);
-                RotationMount3CurrentPosition.Text = roundedVal.ToString() + "deg";
-                OutputWindowString = OutputWindowString + "Device 3 is homed\n";
-                PrintOutBox.Text = OutputWindowString;
-            }
-            if (addressedDevice4 != null)
-            {
-                addressedDevice4.Home();
-                decimal val = addressedDevice4.Position;
-                decimal roundedVal = Math.Round(val, 3);
-                RotationMount4CurrentPosition.Text = roundedVal.ToString() + "deg";
-                OutputWindowString = OutputWindowString + "Device 4 is homed\n";
-                PrintOutBox.Text = OutputWindowString;
-            }
 
         }
 
@@ -117,6 +140,8 @@ namespace ELLO_DLL_Test
        
         private void RotationMount1HomeButton_Click(object sender, EventArgs e)
         {
+            OutputWindowString = OutputWindowString + "Mount 1 home button is clicked\n";
+            PrintOutBox.Text = OutputWindowString;
             if (addressedDevice1 != null)
             {
                addressedDevice1.Home();
