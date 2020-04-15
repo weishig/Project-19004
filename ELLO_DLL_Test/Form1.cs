@@ -11,7 +11,7 @@ using Thorlabs.Elliptec.ELLO_DLL;
 using ELLO_DLL_Test;
 namespace ELLO_DLL_Test
 {
-// code version 1    15.4.2020 update at 1pm
+// code version 1    15.4.2020 update at 4.30pm
 
     public partial class Form : System.Windows.Forms.Form
     {
@@ -149,6 +149,7 @@ namespace ELLO_DLL_Test
                 PrintOutBox.Text = OutputWindowString;
 
             }
+            
         }
         private void RotationMount1MoveAbsoluteButton_Click(object sender, EventArgs e)
         {
