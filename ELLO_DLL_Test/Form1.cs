@@ -37,15 +37,16 @@ namespace ELLO_DLL_Test
         public Form(string[] args)
         {
             InitializeComponent();
+            OutputWindowString = OutputWindowString + "code version 1.1\n";
+            PrintOutBox.Text = OutputWindowString;
 
-            
-             port = (args.Length > 0) ? args[0] : "COM3";
+            port = (args.Length > 0) ? args[0] : "COM3";
              _minSearchLimit = (args.Length > 1 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[1][0]))) ? char.ToUpper(args[1][0]) : '0';
              _maxSearchLimit = (args.Length > 2 && ELLBaseDevice.IsValidAddress(char.ToUpper(args[2][0]))) ? char.ToUpper(args[2][0]) : '3';
              ellDevices = new ELLDevices();
 
 
-            
+            /*
              if (ELLDevicePort.Connect(port))
              {
 
@@ -127,7 +128,7 @@ namespace ELLO_DLL_Test
 
                     }
                  }
-             }
+             }*/
             
         }
 
