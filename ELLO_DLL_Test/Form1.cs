@@ -11,10 +11,11 @@ using Thorlabs.Elliptec.ELLO_DLL;
 using ELLO_DLL_Test;
 namespace ELLO_DLL_Test
 {
-
+// code version 1    15.4.2020
 
     public partial class Form : System.Windows.Forms.Form
     {
+    
         public string port;
         public char _minSearchLimit;
         public char _maxSearchLimit;
